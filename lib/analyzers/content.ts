@@ -76,7 +76,7 @@ function extractKeywordsLocal(text: string) {
 
   // Extended stopwords — add technical/HTML noise words
   const techStopWords = new Set([
-    ...STOP_WORDS,
+    ...Array.from(STOP_WORDS),
     'https','http','www','com','org','net','html','webp','jpeg','png','svg','gif',
     'width','height','size','type','null','true','false','undefined','class','style',
     'data','aria','role','href','src','alt','title','content','name','value','item',
