@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-bebas: 'Bebas Neue', serif;
+  --font-dm-mono: 'DM Mono', monospace;
+  --font-dm-sans: 'DM Sans', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #070A12;
+  color: #9BA8C0;
+  font-family: var(--font-dm-sans);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0D111C; }
+::-webkit-scrollbar-thumb { background: rgba(0,212,255,0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0,212,255,0.5); }
+
+/* Glow utilities */
+.glow-cyan { box-shadow: 0 0 20px rgba(0,212,255,0.4), 0 0 60px rgba(0,212,255,0.15); }
+.glow-lime { box-shadow: 0 0 20px rgba(170,255,62,0.4); }
+.text-glow { text-shadow: 0 0 30px rgba(0,212,255,0.6); }
+.text-glow-lime { text-shadow: 0 0 20px rgba(170,255,62,0.5); }
+
+/* Glass card */
+.glass-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+}
+
+.glass-card-hover:hover {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(0,212,255,0.2);
+  transition: all 0.2s ease;
+}
+
+/* Animated grid background */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(0,212,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Score ring animation */
+@keyframes ring-draw {
+  from { stroke-dashoffset: 314; }
+  to { stroke-dashoffset: var(--dash-offset); }
+}
+
+.ring-animate {
+  animation: ring-draw 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: 0.3s;
+}
+
+/* Scan line effect */
+@keyframes scanline {
+  0% { top: -5%; opacity: 0.8; }
+  100% { top: 105%; opacity: 0; }
+}
+
+.scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0,212,255,0.6), transparent);
+  animation: scanline 3s linear infinite;
+  pointer-events: none;
+}
+
+/* Progress bar glow */
+.progress-glow {
+  box-shadow: 0 0 10px rgba(0,212,255,0.5), 0 0 20px rgba(0,212,255,0.2);
+}
+
+/* Tab active state */
+.tab-active {
+  background: rgba(0,212,255,0.1);
+  border-color: rgba(0,212,255,0.4) !important;
+  color: #00D4FF !important;
+}
+
+/* Stagger animations */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* Issue badges */
+.badge-error { background: rgba(255,64,64,0.15); color: #FF6B6B; border: 1px solid rgba(255,64,64,0.3); }
+.badge-warning { background: rgba(255,183,64,0.15); color: #FFB740; border: 1px solid rgba(255,183,64,0.3); }
+.badge-info { background: rgba(0,212,255,0.1); color: #00D4FF; border: 1px solid rgba(0,212,255,0.2); }
+.badge-pass { background: rgba(0,255,138,0.1); color: #00FF8A; border: 1px solid rgba(0,255,138,0.2); }
+
+/* Print / PDF styles */
+@media print {
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body { background: #070A12 !important; color: #E2E8F0 !important; }
+  .no-print { display: none !important; }
+  .print-page { page-break-after: always; }
+  .glass-card { background: #0D111C !important; border: 1px solid rgba(255,255,255,0.15) !important; }
+  .grid-bg { background-image: none !important; }
+  .scan-line { display: none !important; }
+  /* Ensure text colours are visible */
+  .text-muted { color: #9BA8C0 !important; }
+  .text-heading { color: #E2E8F0 !important; }
+  .text-body { color: #9BA8C0 !important; }
+  .text-cyan-DEFAULT, .text-cyan-500 { color: #00D4FF !important; }
+  .text-success { color: #00FF8A !important; }
+  .text-error { color: #FF6B6B !important; }
+  .text-warning { color: #FFB740 !important; }
+}
+
+/* Shimmer loading */
+.shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.02) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s linear infinite;
+}
